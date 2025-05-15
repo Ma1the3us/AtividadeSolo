@@ -1,5 +1,5 @@
-create database ExemploBanco;
-use ExemploBanco;
+create database dbExemploBanco;
+use dbExemploBanco;
 
 CREATE TABLE Usuario(
 	Id int primary key auto_increment,
@@ -10,7 +10,7 @@ CREATE TABLE Usuario(
 
 
 create table Produto(
-CodProd int primary key auto_increment,
+id int primary key auto_increment,
 Nome varchar(40) not null,
 Descricao varchar(200),
 Quantidade int not null,
