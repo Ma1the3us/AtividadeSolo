@@ -1,8 +1,13 @@
+using AtividadeSolo.Repositorio;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// INJEÇÃO DE DEPENDENCIA 
+builder.Services.AddScoped<UsuarioRepositorio>();
+builder.Services.AddScoped<ProdutoRepositorio>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

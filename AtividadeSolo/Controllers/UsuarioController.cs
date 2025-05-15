@@ -1,10 +1,12 @@
-﻿using AtividadeSolo.Repositorio;
+﻿using AtividadeSolo.Models;
+using AtividadeSolo.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AtividadeSolo.Controllers
 {
     public class UsuarioController : Controller
     {
+        private const string ControllerName = "Produto";
         private readonly UsuarioRepositorio _usuarioRepositorio;
 
         public UsuarioController(UsuarioRepositorio usuarioRepositorio)
@@ -26,11 +28,11 @@ namespace AtividadeSolo.Controllers
             var usuario = _usuarioRepositorio.ObterUsuario(email);
             if (usuario != null && usuario.Senha == senha)
             {
-                return RedirectToAction("Index", "Cliente");
+                return RedirectToAction("CadastrarProduto", "Produto");
             }
             
             ModelState.AddModelError("", "Email ou senha inválidos.");
-            return View();
+            return RedirectToAction("index","Home");
         }
     }
 }

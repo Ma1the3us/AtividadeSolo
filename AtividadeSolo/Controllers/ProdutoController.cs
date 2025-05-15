@@ -9,6 +9,31 @@ namespace AtividadeSolo.Controllers
     {
         private readonly ProdutoRepositorio _produtoRepositorio;
         public ProdutoController(ProdutoRepositorio produtoRepositorio)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {
             _produtoRepositorio = produtoRepositorio;
         }

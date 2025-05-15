@@ -14,7 +14,7 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into produto (Nome,Descricao,Quantidade,Preco) values (@nome, @descricao, @quantidade,@preco )", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into produto values (null,@nome, @descricao, @quantidade,@preco )", conexao);
                 cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = produto.Nome;
                 cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = produto.Descricao;
                 cmd.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = produto.Quantidade;
@@ -30,7 +30,7 @@ namespace AtividadeSolo.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update produto set Nome=@nome, Descricao=@descricao, Quantidade=@quantidade, Preco=@preco " + " where CodProd=@codigo ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update produto set Nome=@nome, Descricao=@descricao, Quantidade=@quantidade, Preco=@preco " + " where Id=@codigo ", conexao);
                     cmd.Parameters.Add("@codigo", MySqlDbType.Int32).Value = produto.Id;
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = produto.Nome;
                     cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = produto.Descricao;
@@ -52,7 +52,7 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from produto", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Produto", conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -62,7 +62,7 @@ namespace AtividadeSolo.Repositorio
                     Prodlist.Add(
                                  new Produto
                                  {
-                                     Id = Convert.ToInt32(dr["CodProd"]),
+                                     Id = Convert.ToInt32(dr["Id"]),
                                      Nome = ((string)dr["Nome"]),
                                      Descricao = ((string)dr["Descricao"]),
                                      Quantidade = Convert.ToInt32(dr["Quantidade"]),
@@ -77,7 +77,7 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from produto where CodProd=@codigo ", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from produto where Id=@codigo ", conexao);
                 cmd.Parameters.AddWithValue("@codigo", Codigo);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
@@ -85,7 +85,7 @@ namespace AtividadeSolo.Repositorio
                 dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (dr.Read())
                 {
-                    produto.Id = Convert.ToInt32(dr["CodProd"]);
+                    produto.Id = Convert.ToInt32(dr["Id"]);
                     produto.Nome = ((string)dr["Nome"]);
                     produto.Descricao = ((string)dr["Descricao"]);
                     produto.Quantidade = Convert.ToInt32(dr["Quantidade"]);
@@ -100,7 +100,7 @@ namespace AtividadeSolo.Repositorio
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("delete from produto where CodProd=@codigo", conexao);
+                MySqlCommand cmd = new MySqlCommand("delete from produto where Id=@codigo", conexao);
 
                 cmd.Parameters.AddWithValue("@codigo", Id);
 
