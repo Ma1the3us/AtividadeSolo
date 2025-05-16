@@ -18,3 +18,5 @@ Preco numeric(5,2) not null
 );
 select*from Produto;
 SELECT * FROM Usuario;
+insert into Usuario(Nome,Email,Senha)
+			values('Abudabi','Abudabi@gmail.com',03122007);

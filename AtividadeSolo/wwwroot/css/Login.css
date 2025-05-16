@@ -1,6 +1,62 @@
-﻿namespace AtividadeSolo.wwwroot.css
-{
-    public class Login
-    {
+﻿body {
+    background-image: linear-gradient(rgb(14, 55, 151), rgb(145, 86, 230));
+}
+
+.login-title {
+    text-align: center;
+    color: rgb(235, 145, 181);
+    margin-bottom: 20px;
+ 
+}
+
+.login-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f4f4f4;
+  
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 700;
     }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-image: linear-gradient( rgb(198, 28, 100), rgb(97, 35, 182));
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin: 0 auto;
+    transition: 0.1s color ease;
+}
+
+    .btn-primary:hover {
+        background-image: linear-gradient(rgb(55, 124, 247), rgb(211, 147, 255));
+        color: rgb(255, 198, 221);
+    }
+
+.text {
+    color: rgb(195, 70, 127);
+}
+.socorro{
+    margin-left:40%;
+    margin-top:15%
 }

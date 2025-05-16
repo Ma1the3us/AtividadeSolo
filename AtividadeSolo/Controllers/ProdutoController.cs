@@ -1,39 +1,13 @@
-﻿
-using AtividadeSolo.Models;
+﻿using AtividadeSolo.Models;
 using AtividadeSolo.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AtividadeSolo.Controllers
+namespace atvsolo.Controllers
 {
     public class ProdutoController : Controller
     {
         private readonly ProdutoRepositorio _produtoRepositorio;
         public ProdutoController(ProdutoRepositorio produtoRepositorio)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {
             _produtoRepositorio = produtoRepositorio;
         }
@@ -54,10 +28,10 @@ namespace AtividadeSolo.Controllers
 
         }
 
-        public IActionResult EditarProduto(int id)
+        public IActionResult EditarProduto(int Id)
         {
 
-            var produto = _produtoRepositorio.ObterProduto(id);
+            var produto = _produtoRepositorio.ObterProduto(Id);
 
 
             if (produto == null)
@@ -70,7 +44,7 @@ namespace AtividadeSolo.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarProduto(int id, [Bind("CodProd, Nome,Descricao,Quantidade,Preco")] Produto produto)
+        public IActionResult EditarProduto(int id, [Bind("Id, Nome,Descricao,Quantidade,Preco")] Produto produto)
         {
             if (id != produto.Id)
             {

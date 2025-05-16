@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\Class.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="assetss\" />
+    <None Include="wwwroot\video\coqueironapraia.mp4" />
   </ItemGroup>
 
 </Project>

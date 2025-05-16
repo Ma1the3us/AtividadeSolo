@@ -1,17 +1,21 @@
 ﻿@model AtividadeSolo.Models.Usuario;
 <link href="~/css/Login.css" rel="stylesheet" />
 
-<h1>Login</h1>
-
-<form asp-action="Login" method="post">
-    <div>
-        <label>Email:</label>
-        <input type="email" name="email" required />
+<section class="socorro">
+    <h1>Login</h1>
+    <div class="row form-group"
+         <div class="col-md-4">
+    <form asp-action="Login" method="post">
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required />
+        </div>
+        <div>
+            <label>Senha:</label>
+            <input type="password" name="Senha" required />
+        </div>
+        <button type="submit">Login</button>
+    </form>
+        </div>
     </div>
-    <div>
-        <label>Senha:</label>
-        <input type="password" name="senha" required />
-    </div>
-    <button type="submit">Login</button>
-</form>
-
+</section>

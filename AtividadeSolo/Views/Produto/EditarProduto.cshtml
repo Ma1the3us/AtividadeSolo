@@ -1,10 +1,10 @@
 ﻿@model AtividadeSolo.Models.Produto;
 <h1>Editar Produto</h1>
-
+<link href="~/css/editarproduto.css" rel="stylesheet" />
 <h4>Produto</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row" >
+    <div class="col-md-4 ">
         <form asp-action="EditarProduto" method="post">
             @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
             Um ataque CSRF ocorre quando um site malicioso, um e-mail, um programa de mensagens

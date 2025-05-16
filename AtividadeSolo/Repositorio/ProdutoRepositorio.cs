@@ -1,10 +1,10 @@
-﻿
-using MySql.Data.MySqlClient;
-using AtividadeSolo.Models;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
+using AtividadeSolo.Models;
 
 namespace AtividadeSolo.Repositorio
 {
+
     public class ProdutoRepositorio(IConfiguration configuration)
     {
         private readonly string _conexaoMySQL = configuration.GetConnectionString("ConexaoMySQL");
@@ -14,7 +14,7 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into produto values (null,@nome, @descricao, @quantidade,@preco )", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into produto (Nome,Descricao,Quantidade,Preco) values (@nome, @descricao, @quantidade,@preco )", conexao);
                 cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = produto.Nome;
                 cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = produto.Descricao;
                 cmd.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = produto.Quantidade;
@@ -23,6 +23,8 @@ namespace AtividadeSolo.Repositorio
                 conexao.Close();
             }
         }
+
+
         public bool Atualizar(Produto produto)
         {
             try
@@ -30,8 +32,8 @@ namespace AtividadeSolo.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update produto set Nome=@nome, Descricao=@descricao, Quantidade=@quantidade, Preco=@preco " + " where Id=@codigo ", conexao);
-                    cmd.Parameters.Add("@codigo", MySqlDbType.Int32).Value = produto.Id;
+                    MySqlCommand cmd = new MySqlCommand("Update produto set Nome=@nome, Descricao=@descricao, Quantidade=@quantidade, Preco=@preco " + " where Id=@id ", conexao);
+                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = produto.Id;
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = produto.Nome;
                     cmd.Parameters.Add("@descricao", MySqlDbType.VarChar).Value = produto.Descricao;
                     cmd.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = produto.Quantidade;
@@ -52,7 +54,7 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Produto", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from produto", conexao);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -77,8 +79,8 @@ namespace AtividadeSolo.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from produto where Id=@codigo ", conexao);
-                cmd.Parameters.AddWithValue("@codigo", Codigo);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from produto where Id=@id ", conexao);
+                cmd.Parameters.AddWithValue("@id", Codigo);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
                 Produto produto = new Produto();
@@ -100,18 +102,14 @@ namespace AtividadeSolo.Repositorio
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("delete from produto where Id=@codigo", conexao);
+                MySqlCommand cmd = new MySqlCommand("delete from produto where Id=@id", conexao);
 
-                cmd.Parameters.AddWithValue("@codigo", Id);
+                cmd.Parameters.AddWithValue("@id", Id);
 
-                int i = cmd.ExecuteNonQuery(); //asddasasdfasdfasdefswertw
+                int i = cmd.ExecuteNonQuery();
 
                 conexao.Close();
             }
         }
     }
 }
-
-
-
-
